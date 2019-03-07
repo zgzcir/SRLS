@@ -15,6 +15,7 @@ namespace SLRS_Server.Servers
         private IPEndPoint iPEndPoint;
         private Socket serverSocket;
         private List<Client> clientList = new List<Client>();
+        private List<int> onLineUserIdList = new List<int>();
         private ControllerManager controllerManager;
         public Server() { }
         public Server(string ipStr, int port)
@@ -23,7 +24,21 @@ namespace SLRS_Server.Servers
             controllerManager = new ControllerManager(this);
 
         }
-
+        public void AddOnLineUserId(int id)
+        {
+            onLineUserIdList.Add(id);
+        }
+        public bool IsOnline(int id)
+        {
+            if(onLineUserIdList.Contains(id))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public void SetIpAndPort(string ipStr, int port)
         {
             iPEndPoint = new IPEndPoint(IPAddress.Parse(ipStr), port);

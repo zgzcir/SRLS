@@ -26,6 +26,8 @@ namespace SLRS_Server.Controller
             {
                 User user = userDAO.GetByUserName(client.MySQLconn, strs[0]);
                 string newData = user.Id.ToString() + ',' + user.UserName + ',' + user.NickName + ',' + user.IsLoginFirst.ToString() + ',' + ((int)ReturnCode.Success).ToString();
+                client.ClientUserId = user.Id;
+                server.AddOnLineUserId(user.Id);
                 return newData;
             }
             else
@@ -94,6 +96,15 @@ namespace SLRS_Server.Controller
                     sb.Append(ids);
                     sb.Append(',');
                     sb.Append(userDAO.GetNicknameById(client.MySQLconn, int.Parse(ids)));
+                    sb.Append(',');
+                    if(server.IsOnline(int.Parse(ids)))
+                    {
+                        sb.Append('1');
+                    }
+                    else
+                    {
+                        sb.Append('0');
+                    }
                     sb.Append('|');
                 }
             }

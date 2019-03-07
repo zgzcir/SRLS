@@ -3,4 +3,3 @@ C:\Users\zgzci\source\repos\SLRS_Server\Common\bin\Debug\Common.pdb
 C:\Users\zgzci\source\repos\SLRS_Server\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
 C:\Users\zgzci\source\repos\SLRS_Server\Common\obj\Debug\Common.dll
 C:\Users\zgzci\source\repos\SLRS_Server\Common\obj\Debug\Common.pdb
-C:\Users\zgzci\source\repos\SLRS_Server\Common\obj\Debug\Common.csprojAssemblyReference.cache

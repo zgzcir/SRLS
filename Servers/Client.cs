@@ -17,7 +17,14 @@ namespace SLRS_Server.Servers
         private Server server;
         private MySqlConnection mySqlConn;
 
-        private int  clientUserId;
+        public int ClientUserId
+        {
+            get;
+            set;
+        }
+
+
+
 
         private Message msg = new Message();
         public Client() { }
@@ -85,16 +92,21 @@ namespace SLRS_Server.Servers
         }
         private void OnProcessMessage(ControllerCode controllerCode, RequestCode requestCode, string data)
         {
-            server.HandleRequest(controllerCode, requestCode, data,this);        }
+            server.HandleRequest(controllerCode, requestCode, data, this);
+        }
         private void Close()
         {
             DataBaseConnectTool.CloseConnection(mySqlConn);
-            if(clientSocket!=null)
+            if (clientSocket != null)
             {
                 clientSocket.Close();
                 Console.WriteLine("一个远程连接已关闭");
             }
+        }
 
+        public void BroadcastMessage(Client client, RequestCode requestCode, string data)
+        {
+                    server.SendResponse(client, requestCode, data);
         }
     }
 }

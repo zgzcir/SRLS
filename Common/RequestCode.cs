@@ -9,6 +9,6 @@
         SearchUser,
         GetFriendList,
         SetFirstLoginInformation,
-        
+        SendChatMessage
     }
 }

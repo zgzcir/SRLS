@@ -8,6 +8,7 @@ namespace Common
     {
         None,
         User,
+        Chat
 
     }
 }
