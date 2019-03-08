@@ -24,7 +24,7 @@ namespace SLRS_Server.Controller
         {
 
             controllerDict.Add(ControllerCode.User, new UserController());
-            controllerDict.Add(ControllerCode.Chat, new UserController());
+            controllerDict.Add(ControllerCode.Chat, new ChatController());
 
         }
         public void HandleRequest(ControllerCode controllerCode, RequestCode requestCode, string data, Client client)

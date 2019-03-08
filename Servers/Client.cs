@@ -97,6 +97,8 @@ namespace SLRS_Server.Servers
         private void Close()
         {
             DataBaseConnectTool.CloseConnection(mySqlConn);
+            server.UserOffline(ClientUserId);
+            server.RemoveClient(this);
             if (clientSocket != null)
             {
                 clientSocket.Close();
@@ -106,7 +108,7 @@ namespace SLRS_Server.Servers
 
         public void BroadcastMessage(Client client, RequestCode requestCode, string data)
         {
-                    server.SendResponse(client, requestCode, data);
+               server.SendResponse(client, requestCode, data);
         }
     }
 }

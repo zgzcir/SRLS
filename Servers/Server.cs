@@ -16,6 +16,7 @@ namespace SLRS_Server.Servers
         private Socket serverSocket;
         private List<Client> clientList = new List<Client>();
         private List<int> onLineUserIdList = new List<int>();
+        private Dictionary<int, Client> UserIdClientDict = new Dictionary<int, Client>();
         private ControllerManager controllerManager;
         public Server() { }
         public Server(string ipStr, int port)
@@ -24,13 +25,44 @@ namespace SLRS_Server.Servers
             controllerManager = new ControllerManager(this);
 
         }
+
+        public void UserOffline(int id)
+        {
+            onLineUserIdList.Remove(id);
+            UserIdClientDict.Remove(id);
+        }
+        public Client GetClientById(int id)
+        {
+            Client client;
+            UserIdClientDict.TryGetValue(id, out client);
+            if (client == null)
+            {
+                foreach (Client c in clientList)
+                {
+                    if (c.ClientUserId == id)
+                    {
+                        client = c;
+                        UserIdClientDict.Add(id, client);
+                        return client;
+                    }
+                }
+            }
+            if (client == null)
+            {
+                return null;
+            }
+            else
+            {
+                return client;
+            }
+        }
         public void AddOnLineUserId(int id)
         {
             onLineUserIdList.Add(id);
         }
         public bool IsOnline(int id)
         {
-            if(onLineUserIdList.Contains(id))
+            if (onLineUserIdList.Contains(id))
             {
                 return true;
             }
@@ -74,7 +106,15 @@ namespace SLRS_Server.Servers
 
         public void SendResponse(Client client, RequestCode requestCode, string data)
         {
-            client.Send(requestCode, data);
+            try
+            {
+
+                client.Send(requestCode, data);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("在Send Response时发生了错误:" + e);
+            }
         }
 
         public void HandleRequest(ControllerCode controllerCode, RequestCode requestCode, string data, Client client)
