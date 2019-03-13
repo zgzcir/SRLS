@@ -253,10 +253,7 @@ namespace SLRS_Server.DAO
                 {
                     sb.Remove(sb.Length - 1, 1);
                 }
-                else
-                {
-                    sb.Append('r');
-                }
+            
                 return sb.ToString();
             }
             catch (Exception e)

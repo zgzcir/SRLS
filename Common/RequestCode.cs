@@ -9,7 +9,17 @@
         SearchUser,
         GetFriendList,
         SetFirstLoginInformation,
-        SendChatMessage,
-        ReciveChatMessage
+        SendAndSaveChatMessage,
+        SetReaded,
+
+        //response
+
+        ReciveChatMessage,
+        GetNotification,
+
+        SendMessage,
+        ShowNotification,
+
+
     }
 }

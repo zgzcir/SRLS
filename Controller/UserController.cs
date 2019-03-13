@@ -85,10 +85,12 @@ namespace SLRS_Server.Controller
         }
         public string GetFriendList(string data, Client client, Server server)
         {
+
+            Console.WriteLine(data);
             StringBuilder sb = new StringBuilder();
             int id = int.Parse(data);
             string s = userDAO.GetFriendsIdById(client.MySQLconn, id);
-            if(!string.Equals(s,"r"))
+            if(!string.IsNullOrEmpty(s))
             {
                 string[] strs = s.Split(',');
                 foreach (string ids in strs)

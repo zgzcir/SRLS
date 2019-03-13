@@ -31,7 +31,8 @@ namespace SLRS_Server.Servers
             onLineUserIdList.Remove(id);
             UserIdClientDict.Remove(id);
         }
-        public Client GetClientById(int id)
+        
+        public Client GetOnlineClientById(int id)
         {
             Client client;
             UserIdClientDict.TryGetValue(id, out client);

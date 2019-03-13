@@ -50,9 +50,6 @@ namespace SLRS_Server.Controller
                 return;
             }
             server.SendResponse(client, requestCode, o as string);
-
         }
-
-
     }
 }
